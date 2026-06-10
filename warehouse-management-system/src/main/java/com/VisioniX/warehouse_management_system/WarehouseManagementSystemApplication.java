@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WarehouseManagementSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WarehouseManagementSystemApplication.class, args);
+		SpringApplication.run(
+				WarehouseManagementSystemApplication.class,
+				args);
 	}
-
 }

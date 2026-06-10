@@ -2,45 +2,50 @@ package com.VisioniX.warehouse_management_system.controller;
 
 import com.VisioniX.warehouse_management_system.entity.Product;
 import com.VisioniX.warehouse_management_system.service.ProductService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/products")
+@RequiredArgsConstructor
 public class ProductController {
 
-    @Autowired
-    private ProductService service;
+    private final ProductService productService;
 
     @PostMapping
-    public Product addProduct(
+    public Product create(
             @RequestBody Product product) {
-
-        return service.saveProduct(product);
+        return productService.create(product);
     }
 
     @GetMapping
-    public List<Product> getProducts() {
-
-        return service.getAllProducts();
+    public List<Product> getAll() {
+        return productService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Product getProduct(
+    public Product getById(
             @PathVariable Long id) {
 
-        return service.getProductById(id);
+        return productService.getById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Product update(
+            @PathVariable Long id,
+            @RequestBody Product product) {
+
+        return productService.update(id, product);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProduct(
+    public String delete(
             @PathVariable Long id) {
 
-        service.deleteProduct(id);
+        productService.delete(id);
 
-        return "Product Deleted";
+        return "Deleted Successfully";
     }
 }

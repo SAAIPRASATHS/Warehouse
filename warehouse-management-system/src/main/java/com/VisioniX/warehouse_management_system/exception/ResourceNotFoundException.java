@@ -1,4 +1,6 @@
-package com.VisioniX.warehouse_management_system.exception;
+public class ResourceNotFoundException extends RuntimeException {
 
-public class ResourceNotFoundException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
 }
