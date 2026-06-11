@@ -27,9 +27,17 @@ public class AuthService {
     }
 
     public String login(AuthDto dto) {
-        var user = userRepository.findByUsername(dto.getUsername());
-        if (user.isPresent() && passwordEncoder.matches(dto.getPassword(), user.get().getPassword())) {
-            return "Successfully login in the Application";
+        var user =
+                userRepository.findByUsername(
+                        dto.getUsername());
+        if (user.isPresent()
+                &&
+                passwordEncoder.matches(
+                        dto.getPassword(),
+                        user.get().getPassword())) {
+
+            return jwtService.generateToken(
+                    user.get().getUsername());
         }
         return "Invalid credentials";
     }
